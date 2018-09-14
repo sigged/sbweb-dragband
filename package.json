@@ -1,13 +1,13 @@
 {
-    "name": "dragband",
+    "name": "sbweb-dragband",
     "version": "0.1.0",
     "author": "S. Derdeyn <sigged@users.noreply.github.com>",
     "license": "MIT",
     "description": "Creates a draggable band from a list. Supports swiping.",
-    "homepage": "https://github.com/sigged/",
+    "homepage": "https://github.com/sigged/sbweb-dragband",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/sigged/.git"
+        "url": "git+https://github.com/sigged/sbweb-dragband.git"
     },
     "main": "index.js",
     "scripts": {
