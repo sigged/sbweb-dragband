@@ -37,7 +37,7 @@
             <li><a href="#DEC" draggable="false">DEC</a></li>
         </ul>
     </aside>
-    <aside id="province-selector" class="scrollingband" style="border-top:none">
+    <aside id="stuff-selector" class="scrollingband" style="border-top:none">
         <div id="prov-left" class="scroller leftscroll"><span class="">&#x276E;</span></div>
         <div id="prov-right" class="scroller rightscroll"><span class="">&#x276F;</span></div>
         <ul>
@@ -52,7 +52,7 @@
             document.querySelector('#month-selector ul'), 11, 100,
             document.getElementById('month-left'), document.getElementById('month-right'));
         db1.selectItem(1);
-        let db2 = dragBand.init(document.querySelector('#province-selector ul'), 3, 100,
+        let db2 = dragBand.init(document.querySelector('#stuff-selector ul'), 3, 100,
             document.getElementById('prov-left'), document.getElementById('prov-right'));
         db2.selectItem(2);
 </script>
