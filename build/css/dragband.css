@@ -59,10 +59,10 @@
     cursor: pointer; }
     .scrollingband .scroller.leftscroll {
       left: 0;
-      background: linear-gradient(to right, #f8f8f8, rgba(247, 247, 247, 0.75) 90%, rgba(247, 247, 247, 0.05)); }
+      background: linear-gradient(to right, #f8f8f8, rgba(248, 248, 248, 0.87) 65%, rgba(247, 247, 247, 0)); }
     .scrollingband .scroller.rightscroll {
       right: 0;
-      background: linear-gradient(to left, #f8f8f8, rgba(247, 247, 247, 0.75) 90%, rgba(247, 247, 247, 0.05)); }
+      background: linear-gradient(to left, #f8f8f8, rgba(248, 248, 248, 0.87) 65%, rgba(247, 247, 247, 0)); }
     .scrollingband .scroller > span {
       position: absolute;
       display: block;
