@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="nl-BE">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Example Page</title>
+    <meta name="description" content="Bekijk alle rommelmarkten tijdens de maand oktober 2018">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="/css/dragband.min.css" />
+    <script src="/scripts/dragband.min.js"></script>
+
+    <style>
+    body {
+        margin:0;
+        padding:0;
+        font-family: sans-serif;
+    }
+    </style>
+</head>
+<body>
+    <aside id="month-selector" class="scrollingband">
+        <div id="month-left" class="scroller leftscroll"><span class="">&#x276E;</span></div>
+        <div id="month-right" class="scroller rightscroll"><span class="">&#x276F;</span></div>
+        <ul>
+            <li><a href="#JAN" draggable="false">JAN</a></li>
+            <li><a href="#FEB" draggable="false">FEB</a></li>
+            <li><a href="#MAA" draggable="false">MAR</a></li>
+            <li><a href="#APR" draggable="false">APR</a></li>
+            <li><a href="#MEI" draggable="false">MAY</a></li>
+            <li><a href="#JUN" draggable="false">JUN</a></li>
+            <li><a href="#JUL" draggable="false">JUL</a></li>
+            <li><a href="#AUG" draggable="false">AUG</a></li>
+            <li><a href="#SEP" draggable="false">SEP</a></li>
+            <li><a href="#OKT" draggable="false">OCT</a></li>
+            <li><a href="#NOV" draggable="false">NOV</a></li>
+            <li><a href="#DEC" draggable="false">DEC</a></li>
+        </ul>
+    </aside>
+    <aside id="province-selector" class="scrollingband" style="border-top:none">
+        <div id="prov-left" class="scroller leftscroll"><span class="">&#x276E;</span></div>
+        <div id="prov-right" class="scroller rightscroll"><span class="">&#x276F;</span></div>
+        <ul>
+            <li><a href="#all" draggable="false">All</a></li>
+            <li><a href="#else" draggable="false">Something Else</a></li>
+            <li><a href="#orthis" draggable="false">Or this one</a></li>
+            <li><a href="#etc" draggable="false">And so on</a></li>
+        </ul>
+    </aside>
+    <script>
+        let db1 = dragBand.init(
+            document.querySelector('#month-selector ul'), 11, 100,
+            document.getElementById('month-left'), document.getElementById('month-right'));
+        db1.selectItem(1);
+        let db2 = dragBand.init(document.querySelector('#province-selector ul'), 3, 100,
+            document.getElementById('prov-left'), document.getElementById('prov-right'));
+        db2.selectItem(2);
+</script>
+</body>
+</html>

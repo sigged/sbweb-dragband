@@ -1,0 +1,86 @@
+@charset "UTF-8";
+.scrollingband {
+  position: relative;
+  overflow-x: hidden;
+  background-color: #f8f8f8;
+  border-top: 7px solid #deae74;
+  border-bottom: 7px solid #deae74;
+  border-top: 5px solid #e7e7e7;
+  border-bottom: 5px solid #e7e7e7;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 7px 14px rgba(0, 0, 0, 0.23); }
+  .scrollingband ul {
+    position: relative;
+    left: 0;
+    top: 0;
+    margin: 0;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    overflow-y: hidden;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    background-color: transparent; }
+    .scrollingband ul li {
+      text-align: center;
+      display: inline-block;
+      margin: 0; }
+      .scrollingband ul li a {
+        display: inline-block;
+        padding: 5px 17px;
+        color: #4f8db3;
+        text-decoration: none;
+        border: 2px solid transparent;
+        white-space: nowrap;
+        -ms-user-drag: none;
+        -moz-user-drag: none;
+        -webkit-user-drag: none;
+        -o-user-drag: none;
+        -khtml-user-drag: none;
+        user-drag: none;
+        user-select: none; }
+      .scrollingband ul li.selected a,
+      .scrollingband ul li a:hover,
+      .scrollingband ul li ² a:active {
+        color: #000;
+        text-decoration: none;
+        border-bottom-color: #4f8db3;
+        background-color: #efefef; }
+  .scrollingband .scroller {
+    position: absolute;
+    width: 30px;
+    display: block;
+    height: 100%;
+    z-index: 1;
+    background-color: #f8f8f8;
+    background-color: rgba(247, 247, 247, 0.75);
+    opacity: 0;
+    transition: opacity 0.25s linear;
+    cursor: pointer; }
+    .scrollingband .scroller.leftscroll {
+      left: 0;
+      background: linear-gradient(to right, #f8f8f8, rgba(247, 247, 247, 0.75) 90%, rgba(247, 247, 247, 0.05)); }
+    .scrollingband .scroller.rightscroll {
+      right: 0;
+      background: linear-gradient(to left, #f8f8f8, rgba(247, 247, 247, 0.75) 90%, rgba(247, 247, 247, 0.05)); }
+    .scrollingband .scroller > span {
+      position: absolute;
+      display: block;
+      text-align: center;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 1.4em;
+      font-size: 20px;
+      margin: auto;
+      color: #4f8db3;
+      user-select: none; }
+    .scrollingband .scroller:hover > span {
+      color: #b27a55; }
+
+.smooth {
+  transition: left .5s ease-out; }
+
+/*# sourceMappingURL=dragband.css.map */
