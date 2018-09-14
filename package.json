@@ -5,6 +5,7 @@
     "license": "MIT",
     "description": "Creates a draggable band from a list. Supports swiping.",
     "homepage": "https://github.com/sigged/sbweb-dragband",
+    "bugs": "https://github.com/sigged/sbweb-dragband/issues",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/sigged/sbweb-dragband.git"
@@ -13,6 +14,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node index.js",
+        "build": "npm run build:css && npm run build:js",
         "build:css": "npm run build:sass && npm run build:postcss",
         "build:sass": "node-sass --source-map true --output-style 'compressed' src/assets/styles/ -o build/css/",
         "build:postcss": "trash build/css/*.min.css && postcss build/css/*.css -d build/css/ --ext min.css --config postcss.config.js",
