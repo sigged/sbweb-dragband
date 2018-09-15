@@ -15,7 +15,7 @@ var myDragBand = dragBand.init(
         rightscroller : document.getElementById('right-scroll-button'),
         scrollstep : 50,
         elasticWidth : 100,
-        scrollerVisibleMargin : 20
+        hideScrollerMargin : 20
     });
 
 // select item with index 2
@@ -35,7 +35,7 @@ Configure the third parameter of `init` method as an object with the following p
 | `rightscroller`         | Object  | element representing right scrollbutton   | `null`  |
 | `scrollstep`            | number  | px to scroll when using wheel/scrollbutton| `50`    |
 | `elasticWidth`          | number  | elasticity beyond left/right edges in px  | `100`   |
-| `scrollerVisibleMargin` | number  | hidden buttons when with margin from edge | `20`    |
+| `hideScrollerMargin` | number  | hidden buttons when with margin from edge | `20`    |
 
 ## Example #
 

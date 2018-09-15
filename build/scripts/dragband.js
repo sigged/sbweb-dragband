@@ -18,7 +18,7 @@ var dragBand = function () {
    * @arg {Object} options.rightscroller - element representing right scrollbutton (default null)
    * @arg {number} options.scrollstep - number of px to scroll when using wheel/scrollbutton (default 50)
    * @arg {number} options.elasticWidth - dragging elasticity beyond left/right edges in px (default 100)
-   * @arg {number} options.scrollerVisibleMargin - scrollbutton becomes hidden when less than this px amount from edge (default 20)
+   * @arg {number} options.hideScrollerMargin - scrollbutton becomes hidden when less than this px amount from edge (default 20)
    */
 
   function init(element, intialItemIndex, options) {
@@ -29,7 +29,7 @@ var dragBand = function () {
     var scrollstep = options.scrollstep || 50;
     var startIndex = intialItemIndex || 0;
     var elasticWidth = options.elasticWidth || 100;
-    var scrollerVisibleMargin = options.scrollerVisibleMargin || 20;
+    var hideScrollerMargin = options.hideScrollerMargin || 20;
     var locked = false;
     var startX = null;
     var i = 0,
@@ -96,11 +96,11 @@ var dragBand = function () {
     }
 
     function isLeftScrollerVisible(xPos) {
-      return !(xPos > leftLimit - scrollerVisibleMargin);
+      return !(xPos > leftLimit - hideScrollerMargin);
     }
 
     function isRightScrollerVisible(xPos) {
-      return !(xPos < rightLimit + scrollerVisibleMargin);
+      return !(xPos < rightLimit + hideScrollerMargin);
     }
 
     function refreshSelection(index) {
