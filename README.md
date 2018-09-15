@@ -14,7 +14,7 @@ var myDragBand = dragBand.init(
         leftScroller : document.getElementById('left-scroll-button'),
         rightscroller : document.getElementById('right-scroll-button'),
         scrollstep : 50,
-        lasticWidth : 100,
+        elasticWidth : 100,
         scrollerVisibleMargin : 20
     });
 

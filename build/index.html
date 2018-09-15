@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl-BE">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -48,7 +48,7 @@
         </ul>
     </aside>
     <script>
-        let db1 = dragBand.init(
+        var db1 = dragBand.init(
             document.querySelector('#month-selector ul'), 11, {
                 leftScroller : document.getElementById('month-left'),
                 rightscroller : document.getElementById('month-right'),
@@ -58,7 +58,7 @@
             });
         db1.selectItem(1);
 
-        let db2 = dragBand.init(
+        var db2 = dragBand.init(
             document.querySelector('#stuff-selector ul'), 3, {
                 leftScroller : document.getElementById('prov-left'),
                 rightscroller : document.getElementById('prov-right')
