@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="/css/dragband.min.css" />
-    <script src="/scripts/dragband.min.js"></script>
+    <script src="/scripts/dragband.js"></script>
 
     <style>
     body {
@@ -49,11 +49,20 @@
     </aside>
     <script>
         let db1 = dragBand.init(
-            document.querySelector('#month-selector ul'), 11, 100,
-            document.getElementById('month-left'), document.getElementById('month-right'));
+            document.querySelector('#month-selector ul'), 11, {
+                leftScroller : document.getElementById('month-left'),
+                rightscroller : document.getElementById('month-right'),
+                scrollstep : 50,
+                lasticWidth : 100,
+                scrollerVisibleMargin : 20
+            });
         db1.selectItem(1);
-        let db2 = dragBand.init(document.querySelector('#stuff-selector ul'), 3, 100,
-            document.getElementById('prov-left'), document.getElementById('prov-right'));
+
+        let db2 = dragBand.init(
+            document.querySelector('#stuff-selector ul'), 3, {
+                leftScroller : document.getElementById('prov-left'),
+                rightscroller : document.getElementById('prov-right')
+            });
         db2.selectItem(2);
 </script>
 </body>

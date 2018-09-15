@@ -9,15 +9,27 @@ var dragBand = function () {
   return {
     init: init
   };
+  /**
+   * Initialized a dragBand instance
+   * @arg {Object} element - the container element containing list items
+   * @arg {number} intialItemIndex - index of initially selected item
+   * @arg {Object} options - optional settings
+   * @arg {Object} options.leftScroller - element representing left scrollbutton (default null)
+   * @arg {Object} options.rightscroller - element representing right scrollbutton (default null)
+   * @arg {number} options.scrollstep - number of px to scroll when using wheel/scrollbutton (default 50)
+   * @arg {number} options.elasticWidth - dragging elasticity beyond left/right edges in px (default 100)
+   * @arg {number} options.scrollerVisibleMargin - scrollbutton becomes hidden when less than this px amount from edge (default 20)
+   */
 
-  function init(listElement) {
-    var startIndex = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    var elasticWidth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 100;
-    var leftscroller = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-    var rightscroller = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : null;
-    var _C = listElement;
-    var _leftScroller = leftscroller;
-    var _rightscroller = rightscroller;
+  function init(element, intialItemIndex, options) {
+    var _C = element;
+    options = options || {};
+    var _leftScroller = options.leftScroller;
+    var _rightscroller = options.rightscroller;
+    var scrollstep = options.scrollstep || 50;
+    var startIndex = intialItemIndex || 0;
+    var elasticWidth = options.elasticWidth || 100;
+    var scrollerVisibleMargin = options.scrollerVisibleMargin || 20;
     var locked = false;
     var startX = null;
     var i = 0,
@@ -84,11 +96,11 @@ var dragBand = function () {
     }
 
     function isLeftScrollerVisible(xPos) {
-      return !(xPos > leftLimit - 20);
+      return !(xPos > leftLimit - scrollerVisibleMargin);
     }
 
     function isRightScrollerVisible(xPos) {
-      return !(xPos < rightLimit + 20);
+      return !(xPos < rightLimit + scrollerVisibleMargin);
     }
 
     function refreshSelection(index) {
@@ -175,7 +187,7 @@ var dragBand = function () {
     }, false);
 
     _C.addEventListener("wheel", function (e) {
-      setX(currentX - Math.sign(e.deltaY) * 50.0);
+      setX(currentX - Math.sign(e.deltaY) * scrollstep);
     }, false); //bind click handler to children and all their descendants (most likely <a>'s)
 
 
@@ -205,12 +217,12 @@ var dragBand = function () {
 
     if (_leftScroller) _leftScroller.addEventListener('click', function (e) {
       if (isLeftScrollerVisible(currentX)) {
-        setX(currentX + 50.0);
+        setX(currentX + scrollstep);
       }
     }, true);
     if (_rightscroller) _rightscroller.addEventListener('click', function (e) {
       if (isLeftScrollerVisible(currentX)) {
-        setX(currentX - 50.0);
+        setX(currentX - scrollstep);
       }
     }, true);
 

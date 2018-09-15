@@ -1,11 +1,12 @@
 {
     "name": "sbweb-dragband",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "author": "S. Derdeyn <sigged@users.noreply.github.com>",
     "license": "MIT",
-    "description": "Creates a draggable band from a list. Supports swiping.",
+    "description": "UI library to create a draggable list bar. Reponsive, scrollable, swipeable",
     "homepage": "https://github.com/sigged/sbweb-dragband",
     "bugs": "https://github.com/sigged/sbweb-dragband/issues",
+    "keywords": ["scroll", "drag", "swipe", "list", "items", "responsive", "mobile"],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/sigged/sbweb-dragband.git"

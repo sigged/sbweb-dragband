@@ -8,10 +8,26 @@ let dragBand = (function (){
     
     return { init };
 
-    function init(listElement, startIndex = 0, elasticWidth=100, leftscroller = null, rightscroller = null){
-        let _C = listElement;
-        let _leftScroller = leftscroller;
-        let _rightscroller = rightscroller;
+    /**
+     * Initialized a dragBand instance
+     * @arg {Object} element - the container element containing list items
+     * @arg {number} intialItemIndex - index of initially selected item
+     * @arg {Object} options - optional settings
+     * @arg {Object} options.leftScroller - element representing left scrollbutton (default null)
+     * @arg {Object} options.rightscroller - element representing right scrollbutton (default null)
+     * @arg {number} options.scrollstep - number of px to scroll when using wheel/scrollbutton (default 50)
+     * @arg {number} options.elasticWidth - dragging elasticity beyond left/right edges in px (default 100)
+     * @arg {number} options.scrollerVisibleMargin - scrollbutton becomes hidden when less than this px amount from edge (default 20)
+     */
+    function init(element, intialItemIndex, options){
+        let _C = element;
+        options = options || {};
+        let _leftScroller = options.leftScroller;
+        let _rightscroller = options.rightscroller;
+        let scrollstep = options.scrollstep || 50;
+        let startIndex = intialItemIndex || 0;
+        let elasticWidth = options.elasticWidth || 100;
+        let scrollerVisibleMargin = options.scrollerVisibleMargin || 20
 
         let locked = false;
         let startX = null;
@@ -77,11 +93,11 @@ let dragBand = (function (){
         }
 
         function isLeftScrollerVisible(xPos){
-            return !(xPos > leftLimit - 20);
+            return !(xPos > leftLimit - scrollerVisibleMargin);
         }
 
         function isRightScrollerVisible(xPos){
-            return !(xPos < rightLimit + 20);
+            return !(xPos < rightLimit + scrollerVisibleMargin);
         }
 
         function refreshSelection(index){
@@ -159,7 +175,7 @@ let dragBand = (function (){
         window.addEventListener('resize', resized, false);
         _C.addEventListener('blur', e => {console.log("blur")}, false);
 
-        _C.addEventListener("wheel", e=> { setX(currentX - Math.sign(e.deltaY)*50.0); }, false);
+        _C.addEventListener("wheel", e=> { setX(currentX - Math.sign(e.deltaY) * scrollstep); }, false);
         
         //bind click handler to children and all their descendants (most likely <a>'s)
         for(let ci = 0; ci < N; ci++){
@@ -179,9 +195,9 @@ let dragBand = (function (){
         }
 
         if(_leftScroller)
-            _leftScroller.addEventListener('click', e => { if(isLeftScrollerVisible(currentX)){ setX(currentX + 50.0); } }, true);
+            _leftScroller.addEventListener('click', e => { if(isLeftScrollerVisible(currentX)){ setX(currentX + scrollstep); } }, true);
         if(_rightscroller)
-            _rightscroller.addEventListener('click', e => { if(isLeftScrollerVisible(currentX)){ setX(currentX - 50.0); } }, true);
+            _rightscroller.addEventListener('click', e => { if(isLeftScrollerVisible(currentX)){ setX(currentX - scrollstep); } }, true);
 
         function getPositionForIndex(itemIndex){
             let child = _C.children[itemIndex];
