@@ -18,8 +18,12 @@ var myDragBand = dragBand.init(
         hideScrollerMargin : 20
     });
 
+// select no item
+myDragBand.selectItem(null);
+
 // select item with index 2
 myDragBand.selectItem(2);
+
 
 // create object with default options and no scrollbuttons
 var simpleDragBand = dragBand.init(document.querySelector('#simple'));

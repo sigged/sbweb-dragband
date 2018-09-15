@@ -27,7 +27,7 @@ var dragBand = function () {
     var _leftScroller = options.leftScroller;
     var _rightscroller = options.rightscroller;
     var scrollstep = options.scrollstep || 50;
-    var startIndex = intialItemIndex || 0;
+    var startIndex = intialItemIndex || null;
     var elasticWidth = options.elasticWidth || 100;
     var hideScrollerMargin = options.hideScrollerMargin || 20;
     var locked = false;
@@ -227,9 +227,13 @@ var dragBand = function () {
     }, true);
 
     function getPositionForIndex(itemIndex) {
-      var child = _C.children[itemIndex];
-      var childLeft = getRelativePosition(child, _C).x;
-      return -childLeft + child.offsetWidth / 2;
+      if (itemIndex) {
+        var child = _C.children[itemIndex];
+        var childLeft = getRelativePosition(child, _C).x;
+        return -childLeft + child.offsetWidth / 2;
+      } else {
+        return currentX;
+      }
     } // Helper function to get an element's exact position
 
 

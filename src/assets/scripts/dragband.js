@@ -25,7 +25,7 @@ let dragBand = (function (){
         let _leftScroller = options.leftScroller;
         let _rightscroller = options.rightscroller;
         let scrollstep = options.scrollstep || 50;
-        let startIndex = intialItemIndex || 0;
+        let startIndex = intialItemIndex || null;
         let elasticWidth = options.elasticWidth || 100;
         let hideScrollerMargin = options.hideScrollerMargin || 20
 
@@ -200,9 +200,14 @@ let dragBand = (function (){
             _rightscroller.addEventListener('click', e => { if(isLeftScrollerVisible(currentX)){ setX(currentX - scrollstep); } }, true);
 
         function getPositionForIndex(itemIndex){
-            let child = _C.children[itemIndex];
-            let childLeft = getRelativePosition(child, _C).x;
-            return -childLeft + child.offsetWidth/2;
+            if(itemIndex){
+                let child = _C.children[itemIndex];
+                let childLeft = getRelativePosition(child, _C).x;
+                return -childLeft + child.offsetWidth/2;
+            }
+            else{
+                return currentX;
+            }
         }
 
         // Helper function to get an element's exact position
