@@ -175,7 +175,7 @@ let dragBand = (function (){
         window.addEventListener('resize', resized, false);
         _C.addEventListener('blur', e => {console.log("blur")}, false);
 
-        _C.addEventListener("wheel", e=> { setX(currentX - Math.sign(e.deltaY) * scrollstep); }, false);
+        _C.addEventListener("wheel", e=> { setX(currentX - Math.sign(e.deltaY) * scrollstep); e.preventDefault(); }, false);
         
         //bind click handler to children and all their descendants (most likely <a>'s)
         for(let ci = 0; ci < N; ci++){

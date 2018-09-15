@@ -188,6 +188,7 @@ var dragBand = function () {
 
     _C.addEventListener("wheel", function (e) {
       setX(currentX - Math.sign(e.deltaY) * scrollstep);
+      e.preventDefault();
     }, false); //bind click handler to children and all their descendants (most likely <a>'s)
 
 

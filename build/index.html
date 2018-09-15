@@ -20,8 +20,8 @@
 </head>
 <body>
     <aside id="month-selector" class="scrollingband">
-        <div id="month-left" class="scroller leftscroll"><span class="">&#x276E;</span></div>
-        <div id="month-right" class="scroller rightscroll"><span class="">&#x276F;</span></div>
+        <div id="month-left" class="scroller leftscroll"><span>&#x276E;</span></div>
+        <div id="month-right" class="scroller rightscroll"><span>&#x276F;</span></div>
         <ul>
             <li><a href="#JAN" draggable="false">JAN</a></li>
             <li><a href="#FEB" draggable="false">FEB</a></li>
@@ -47,6 +47,9 @@
             <li><a href="#etc" draggable="false">And so on</a></li>
         </ul>
     </aside>
+    <div style="height:1000px">
+
+    </div>
     <script>
         var db1 = dragBand.init(
             document.querySelector('#month-selector ul'), 11, {

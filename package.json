@@ -1,12 +1,20 @@
 {
     "name": "sbweb-dragband",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "author": "S. Derdeyn <sigged@users.noreply.github.com>",
     "license": "MIT",
     "description": "UI library to create a draggable list bar. Reponsive, scrollable, swipeable",
     "homepage": "https://github.com/sigged/sbweb-dragband",
     "bugs": "https://github.com/sigged/sbweb-dragband/issues",
-    "keywords": ["scroll", "drag", "swipe", "list", "items", "responsive", "mobile"],
+    "keywords": [
+        "scroll",
+        "drag",
+        "swipe",
+        "list",
+        "items",
+        "responsive",
+        "mobile"
+    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/sigged/sbweb-dragband.git"
@@ -37,6 +45,6 @@
         "postcss-cli": "^6.0.0",
         "postcss-node-sass": "^2.1.6",
         "trash-cli": "^1.4.0",
-        "uglifyjs": "^2.4.11"
+        "uglify-js": "^3.4.9"
     }
 }
