@@ -1,6 +1,6 @@
 {
     "name": "sbweb-dragband",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "author": "S. Derdeyn <sigged@users.noreply.github.com>",
     "license": "MIT",
     "description": "Creates a draggable band from a list. Supports swiping.",
