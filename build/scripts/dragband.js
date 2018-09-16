@@ -77,7 +77,9 @@ var dragBand = function () {
 
     function refreshSelection(index) {
       for (var _i = 0; _i < N; _i++) {
-        _C.children[_i].classList.toggle('selected', _i == index);
+        _C.children[_i].classList.remove('selected');
+
+        if (_i == index) _C.children[_i].classList.add('selected');
       }
     }
 
@@ -147,7 +149,7 @@ var dragBand = function () {
 
       if (locked) {
         var dx = unify(e).clientX - startX,
-            s = Math.sign(dx),
+            s = sign(dx),
             childStarts = [];
         lastMovement = dx;
         var stopX = currentX + lastMovement;
@@ -181,7 +183,7 @@ var dragBand = function () {
 
     function wheel(e) {
       if (!enableScrolling) return;
-      setX(currentX - Math.sign(e.deltaY) * scrollstep);
+      setX(currentX - sign(e.deltaY) * scrollstep);
       e.preventDefault();
     }
 
@@ -293,6 +295,10 @@ var dragBand = function () {
         if (_rightscroller) _rightscroller.style.display = "block";
         selectItem(selectedIndex);
       }
+    }
+
+    function sign(x) {
+      return x ? x < 0 ? -1 : 1 : 0;
     }
 
     return {

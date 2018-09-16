@@ -78,7 +78,9 @@ let dragBand = (function (){
 
         function refreshSelection(index){
             for(let i = 0; i < N; i++){
-                _C.children[i].classList.toggle('selected', i == index);
+                _C.children[i].classList.remove('selected');
+                if(i == index)
+                    _C.children[i].classList.add('selected');
             }
         }
 
@@ -139,7 +141,7 @@ let dragBand = (function (){
             lastEvent = e.type;
 
             if(locked) {
-                let dx = unify(e).clientX - startX, s = Math.sign(dx), childStarts = [];
+                let dx = unify(e).clientX - startX, s = sign(dx), childStarts = [];
                 lastMovement = dx;
 
                 let stopX = currentX + lastMovement;
@@ -172,7 +174,7 @@ let dragBand = (function (){
 
         function wheel(e){
             if(!enableScrolling) return;
-            setX(currentX - Math.sign(e.deltaY) * scrollstep); 
+            setX(currentX - sign(e.deltaY) * scrollstep); 
             e.preventDefault();
         }
 
@@ -277,6 +279,8 @@ let dragBand = (function (){
                 selectItem(selectedIndex);
             }
         }
+
+        function sign(x) { return x ? x < 0 ? -1 : 1 : 0; }
 
         return { selectItem, setScrollingEnabled };
     }
