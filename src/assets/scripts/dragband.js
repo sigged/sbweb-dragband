@@ -21,13 +21,15 @@ let dragBand = (function (){
      */
     function init(element, intialItemIndex, options){
         let _C = element;
+        let startIndex = intialItemIndex || null;
         options = options || {};
         let _leftScroller = options.leftScroller;
         let _rightscroller = options.rightscroller;
         let scrollstep = options.scrollstep || 50;
-        let startIndex = intialItemIndex || null;
         let elasticWidth = options.elasticWidth || 100;
         let hideScrollerMargin = options.hideScrollerMargin || 20
+
+        let enableScrolling = true;
 
         let locked = false;
         let startX = null;
@@ -40,6 +42,7 @@ let dragBand = (function (){
         let spdPosA = 0;
         let currentSpeed = 0, fadeSpeed = 0;
         let speedometer = setInterval(function(){
+            if(!enableScrolling) return;
             let spdPosB = getPosition(_C).x;
             currentSpeed = (spdPosB - spdPosA)*10; // in px/s
             spdPosA = spdPosB;
@@ -73,7 +76,14 @@ let dragBand = (function (){
             return width;
         }
 
+        function refreshSelection(index){
+            for(let i = 0; i < N; i++){
+                _C.children[i].classList.toggle('selected', i == index);
+            }
+        }
+
         function setX(newX){
+            if(!enableScrolling) return;
             //limit new position
             currentX = Math.min(leftLimit, Math.max(rightLimit, newX));
             _C.style.left = `${ currentX }px`;
@@ -99,12 +109,6 @@ let dragBand = (function (){
         function isRightScrollerVisible(xPos){
             return !(xPos < rightLimit + hideScrollerMargin);
         }
-
-        function refreshSelection(index){
-            for(let i = 0; i < N; i++){
-                _C.children[i].classList.toggle('selected', i == index);
-            }
-        }
         
         function resized(e){
             containerWidth = recalculateContainerWidth();
@@ -119,6 +123,7 @@ let dragBand = (function (){
         };
 
         function dragStarted(e) {
+            if(!enableScrolling) return;
             if(!locked){
                 //console.log(e.type);
                 lastEvent = e.type;
@@ -129,6 +134,7 @@ let dragBand = (function (){
         };
 
         function dragStopped(e) {
+            if(!enableScrolling) return;
             //console.log(e.type);
             lastEvent = e.type;
 
@@ -146,6 +152,7 @@ let dragBand = (function (){
         };
 
         function drag(e) { 
+            if(!enableScrolling) return;
             //if(lastEvent != e.type ) console.log(e.type);
             //lastEvent = e.type;
             
@@ -163,6 +170,12 @@ let dragBand = (function (){
             }
         };
 
+        function wheel(e){
+            if(!enableScrolling) return;
+            setX(currentX - Math.sign(e.deltaY) * scrollstep); 
+            e.preventDefault();
+        }
+
         document.body.addEventListener('mousemove', drag, false);
         document.body.addEventListener('touchmove', drag, false);
 
@@ -173,9 +186,8 @@ let dragBand = (function (){
         document.body.addEventListener('touchend', dragStopped, false);
 
         window.addEventListener('resize', resized, false);
-        _C.addEventListener('blur', e => {console.log("blur")}, false);
 
-        _C.addEventListener("wheel", e=> { setX(currentX - Math.sign(e.deltaY) * scrollstep); e.preventDefault(); }, false);
+        _C.addEventListener("wheel", wheel, false);
         
         //bind click handler to children and all their descendants (most likely <a>'s)
         for(let ci = 0; ci < N; ci++){
@@ -246,6 +258,26 @@ let dragBand = (function (){
             };
         }
 
-        return { selectItem };
+        function setScrollingEnabled(enable){
+            enableScrolling = enable;
+            if(!enableScrolling){
+                _C.style.left = 0;
+                if(_leftScroller)
+                    _leftScroller.style.display = "none";
+                if(_rightscroller)
+                    _rightscroller.style.display = "none";
+                selectItem(selectedIndex);
+            }
+            else
+            {
+                if(_leftScroller)
+                    _leftScroller.style.display = "block";
+                if(_rightscroller)
+                    _rightscroller.style.display = "block";
+                selectItem(selectedIndex);
+            }
+        }
+
+        return { selectItem, setScrollingEnabled };
     }
 }());

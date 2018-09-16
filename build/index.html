@@ -60,7 +60,9 @@
                 hideScrollerMargin : 20
             });
         db1.selectItem(1);
-        db1.selectItem(null);
+        //db1.selectItem(null);
+        db1.setScrollingEnabled(false);
+        db1.setScrollingEnabled(true);
 
         var db2 = dragBand.init(
             document.querySelector('#stuff-selector ul'), 3, {
