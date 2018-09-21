@@ -21,7 +21,7 @@ let dragBand = (function (){
      */
     function init(element, intialItemIndex, options){
         let _C = element;
-        let startIndex = intialItemIndex || null;
+        let startIndex = intialItemIndex >= 0 ? intialItemIndex : null;
         options = options || {};
         let _leftScroller = options.leftScroller;
         let _rightscroller = options.rightscroller;
@@ -214,7 +214,7 @@ let dragBand = (function (){
             _rightscroller.addEventListener('click', e => { if(isLeftScrollerVisible(currentX)){ setX(currentX - scrollstep); } }, true);
 
         function getPositionForIndex(itemIndex){
-            if(itemIndex){
+            if(itemIndex !== null){
                 let child = _C.children[itemIndex];
                 let childLeft = getRelativePosition(child, _C).x;
                 return -childLeft + child.offsetWidth/2;
