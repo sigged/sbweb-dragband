@@ -23,7 +23,7 @@ var dragBand = function () {
 
   function init(element, intialItemIndex, options) {
     var _C = element;
-    var startIndex = intialItemIndex || null;
+    var startIndex = intialItemIndex >= 0 ? intialItemIndex : null;
     options = options || {};
     var _leftScroller = options.leftScroller;
     var _rightscroller = options.rightscroller;
@@ -237,7 +237,7 @@ var dragBand = function () {
     }, true);
 
     function getPositionForIndex(itemIndex) {
-      if (itemIndex) {
+      if (itemIndex !== null) {
         var child = _C.children[itemIndex];
         var childLeft = getRelativePosition(child, _C).x;
         return -childLeft + child.offsetWidth / 2;
