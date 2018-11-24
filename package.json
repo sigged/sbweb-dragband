@@ -1,6 +1,6 @@
 {
     "name": "sbweb-dragband",
-    "version": "0.2.5",
+    "version": "0.2.6",
     "author": "S. Derdeyn <sigged@users.noreply.github.com>",
     "license": "MIT",
     "description": "UI library to create a draggable list bar. Reponsive, scrollable, swipeable",
